@@ -1,10 +1,28 @@
 <div class="container">
 Welcome to Book Index (templates/books-index.html)
 <hr>
-<!--  Say Hello -->
+<h2>Add a book:</h2>
+<form ng-submit="books.createBook()">
+  <input type="text" ng-model="books.newBook.title" placeholder="Title"><br>
+  <input type="text" ng-model="books.newBook.author" placeholder="Author"><br>
+  <input type="text" ng-model="books.newBook.releaseDate" placeholder="Release Date: Month DD, YYYY"><br>
+  <input type="text" ng-model="books.newBook.image" placeholder="Book Cover Image Url"><br>
+  <input type="submit" value="Add Book">
+</form>
 <hr>
 <ul>
- <li> <!-- books will go here -->
+ <li ng-repeat="book in books.books"> <!-- books will go here -->
+   <img ng-src="{{ book.image }}">
+   <h3><a ng-href='/books/{{ book._id }}'>{{ book.title }}</a> by {{ book.author }}</h3>
+   <p>Release Date: {{ book.releaseDate }}<p>
+   <button ng-click="books.deleteBook(book)">Delete</button><br>
+   <form ng-submit="books.updateBook(book)">
+     <input type="text" ng-model="book.title" placeholder="Title"><br>
+     <input type="text" ng-model="book.author" placeholder="Author"><br>
+     <input type="text" ng-model="book.releaseDate" placeholder="Release Date: Month DD, YYYY"><br>
+     <input type="text" ng-model="book.image" placeholder="Book Cover Image Url"><br>
+     <button type="submit">Edit Book</button>
+   </form>
  </li>
 </ul>
 </div>

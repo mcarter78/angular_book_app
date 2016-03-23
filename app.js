@@ -8,11 +8,11 @@ angular
       $stateProvider
       .state('home', {
           url: '/',
-          template: "Home!"
+          templateUrl: 'templates/home.html'
       })
       .state('books-index', {
           url: '/books',
-          template: "Books!"
+          templateUrl: 'templates/books-index.html'
       });
       console.log("Config loaded.");
   };
